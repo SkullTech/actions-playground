@@ -18,13 +18,16 @@ jobs:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           status: pending
-          context: Publish NPM package
+          # context: Publish NPM package
       - uses: actions/checkout@v3
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Henlo
-        run: echo "Hello world!"
+        run: |
+          echo "Hello world!"
+          sleep 60
+          echo "Bye world!"
 
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
@@ -33,4 +36,4 @@ jobs:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
-          context: Publish NPM package
+          # context: Publish NPM package
