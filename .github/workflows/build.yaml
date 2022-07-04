@@ -3,9 +3,12 @@ on:
   issue_comment:
     types: [created, edited]
 
+env:
+  maintainers: ["skulltech", "mdhrumil"]
+
 jobs:
   build:
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '@build')
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '~build') && contains(fromJson("['skulltech', 'mdhrumil']"), github.event.comment.user.login)
     name: Building something
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +21,6 @@ jobs:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           status: pending
-          # context: Publish NPM package
       - uses: actions/checkout@v3
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
@@ -36,4 +38,3 @@ jobs:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
-          # context: Publish NPM package
