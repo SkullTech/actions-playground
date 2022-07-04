@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '~build') && contains(fromJson('["skulltech", "mdhrumil"]'), github.event.comment.user.login)
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '~build') && contains(fromJson('["vitalik", "mdhrumil"]'), github.event.comment.user.login)
     name: Building something
     runs-on: ubuntu-latest
     steps:
