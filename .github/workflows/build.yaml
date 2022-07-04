@@ -2,10 +2,17 @@ name: Build
 on:
   issue_comment:
     types: [created, edited]
+env:
+  maintainers: '["skulltech", "mdhrumil"]'
+  trigger: ~build
 
 jobs:
   build:
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '~build') && contains(fromJson('["vitalik", "mdhrumil"]'), github.event.comment.user.login)
+    if: |
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, $trigger) &&
+      contains(fromJson($maintainers), github.event.comment.user.login)
+
     name: Building something
     runs-on: ubuntu-latest
     steps:
