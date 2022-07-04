@@ -10,8 +10,8 @@ jobs:
   build:
     if: |
       github.event.issue.pull_request &&
-      contains(github.event.comment.body, $trigger) &&
-      contains(fromJson($maintainers), github.event.comment.user.login)
+      contains(github.event.comment.body, env.trigger) &&
+      contains(fromJson(env.maintainers), github.event.comment.user.login)
 
     name: Building something
     runs-on: ubuntu-latest
