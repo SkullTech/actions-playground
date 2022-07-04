@@ -15,6 +15,7 @@ jobs:
 
     name: Building something
     runs-on: ubuntu-latest
+    container: projectserum/build:v0.24.2
     steps:
       - name: Get PR details
         uses: xt0rted/pull-request-comment-branch@v1

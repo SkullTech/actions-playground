@@ -1,2 +1,3 @@
 # actions-playground
-Repo for testing out Github actions
+
+Repo for testing out Github actions.
